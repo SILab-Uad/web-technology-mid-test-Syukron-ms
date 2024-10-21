@@ -43,5 +43,8 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     document.getElementById('passwordOutput').textContent = password;
 
 });
-
 ;
+test('should return a value', () => {
+    const result = someFunction();
+    expect(result).toBe(expectedValue);
+});
