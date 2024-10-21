@@ -1,26 +1,33 @@
 const generatePassword = (length, options) => {
     // Character sets for password generation
-    const charSets = {
-        uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        lowercase: "abcdefghijklmnopqrstuvwxyz",
-        numbers: "0123456789",
-        specialChars: "!@#$%^&*()"
-    };
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const specialChars = "!@#$%^&*()";
 
+        // Variable to hold selected character set
+        let charSet = "";
     
-    let charSet = '';
-    if (options.includeUppercase) charSet += charSets.uppercase;
-    if (options.includeLowercase) charSet += charSets.lowercase;
-    if (options.includeNumbers) charSet += charSets.numbers;
-    if (options.includeSpecialChars) charSet += charSets.specialChars;
+       
 
-    if (!charSet) {
-        alert("Silakan pilih setidaknya satu opsi untuk kata sandi.");
-        return "";
-    }
+// TODO: generate the password based on the selected criteria 
+if (options.includeUppercase) charSet += uppercase;
+if (options.includeLowercase) charSet += lowercase;
+if (options.includeNumbers) charSet += numbers;
+if (options.includeSpecialChars) charSet += specialChars;
 
-    
-    return Array.from({ length }, () => charSet[Math.floor(Math.random() * charSet.length)]).join('');
+if (charSet === "") {
+    alert("Please select at least one option for the password.");
+    return "";
+}
+
+let password = "";
+for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charSet.length);
+    password += charSet[randomIndex];
+}
+
+return password;
 };
 
 document.getElementById('generateBtn').addEventListener('click', () => {
@@ -34,4 +41,7 @@ document.getElementById('generateBtn').addEventListener('click', () => {
 
     const password = generatePassword(length, options);
     document.getElementById('passwordOutput').textContent = password;
+
 });
+
+;
