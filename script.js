@@ -1,4 +1,5 @@
 const generatePassword = (length, options) => {
+    // Character sets for password generation
     const charSets = {
         uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         lowercase: "abcdefghijklmnopqrstuvwxyz",
@@ -6,6 +7,7 @@ const generatePassword = (length, options) => {
         specialChars: "!@#$%^&*()"
     };
 
+    
     let charSet = '';
     if (options.includeUppercase) charSet += charSets.uppercase;
     if (options.includeLowercase) charSet += charSets.lowercase;
@@ -15,9 +17,12 @@ const generatePassword = (length, options) => {
     if (!charSet) {
         alert("Silakan pilih setidaknya satu opsi untuk kata sandi.");
         return "";
-    }  
+    }
+
+    
     return Array.from({ length }, () => charSet[Math.floor(Math.random() * charSet.length)]).join('');
 };
+
 document.getElementById('generateBtn').addEventListener('click', () => {
     const length = parseInt(document.getElementById('length').value, 10);
     const options = {
@@ -26,6 +31,7 @@ document.getElementById('generateBtn').addEventListener('click', () => {
         includeNumbers: document.getElementById('includeNumbers').checked,
         includeSpecialChars: document.getElementById('includeSpecialChars').checked,
     };
+
     const password = generatePassword(length, options);
     document.getElementById('passwordOutput').textContent = password;
 });
