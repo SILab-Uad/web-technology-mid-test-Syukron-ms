@@ -1,18 +1,31 @@
-// TODO: Implement the password generation logic based on user input
-
 const generatePassword = (length, options) => {
-    // Character sets for password generation
-    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const lowercase = "abcdefghijklmnopqrstuvwxyz";
-    const numbers = "0123456789";
-    const specialChars = "!@#$%^&*()";
+    const charSets = {
+        uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        lowercase: "abcdefghijklmnopqrstuvwxyz",
+        numbers: "0123456789",
+        specialChars: "!@#$%^&*()"
+    };
 
-    // TODO: Create a variable for the character set based on selected options
+    let charSet = '';
+    if (options.includeUppercase) charSet += charSets.uppercase;
+    if (options.includeLowercase) charSet += charSets.lowercase;
+    if (options.includeNumbers) charSet += charSets.numbers;
+    if (options.includeSpecialChars) charSet += charSets.specialChars;
 
-    // TODO: Generate the password based on the selected criteria
-    return password;
+    if (!charSet) {
+        alert("Silakan pilih setidaknya satu opsi untuk kata sandi.");
+        return "";
+    }  
+    return Array.from({ length }, () => charSet[Math.floor(Math.random() * charSet.length)]).join('');
 };
-
-// TODO: Add event listener to the button to call generatePassword and display the output
-
-// BONUS: Implement the copy to clipboard functionality
+document.getElementById('generateBtn').addEventListener('click', () => {
+    const length = parseInt(document.getElementById('length').value, 10);
+    const options = {
+        includeUppercase: document.getElementById('includeUppercase').checked,
+        includeLowercase: document.getElementById('includeLowercase').checked,
+        includeNumbers: document.getElementById('includeNumbers').checked,
+        includeSpecialChars: document.getElementById('includeSpecialChars').checked,
+    };
+    const password = generatePassword(length, options);
+    document.getElementById('passwordOutput').textContent = password;
+});
