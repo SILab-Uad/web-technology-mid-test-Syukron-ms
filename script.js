@@ -8,6 +8,8 @@ const generatePassword = (length, options) => {
         // Variable to hold selected character set
         let charSet = "";
     
+       
+
 // TODO: generate the password based on the selected criteria 
 if (options.includeUppercase) charSet += uppercase;
 if (options.includeLowercase) charSet += lowercase;
@@ -41,13 +43,5 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     document.getElementById('passwordOutput').textContent = password;
 
 });
+
 ;
-test('should return a value', () => {
-    const result = someFunction();
-    expect(result).toBe(expectedValue);
-});
-const { JSDOM } = require('jsdom');
-const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-global.document = dom.window.document;
-global.window = dom.window;
-global.navigator = dom.window.navigator;
